@@ -1,4 +1,6 @@
-# DIYRE SVG Metadata Editor
+# DIYRE Build Map Data Editor
+
+A tool for labeling the components of a build map svg.
 
 ## To Use
 
