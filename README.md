@@ -1,4 +1,4 @@
-# Fringefest Tools For Ousider Art Fools
+# DIYRE SVG Metadata Editor
 
 ## To Use
 
@@ -7,6 +7,3 @@
 3. npm i
 4. npm start
 
-## Perlin Boiz 4 Life
-
-Perlin Boiz 4 Life or see above.
