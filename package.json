@@ -28,5 +28,9 @@
     "serialport": "^9.0.1",
     "socket.io": "^2.3.0",
     "supercolliderjs": "^1.0.1"
+  },
+  "jshintConfig": {
+    "esversion": "10",
+    "asi": "true"
   }
 }

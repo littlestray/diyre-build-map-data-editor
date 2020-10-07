@@ -13,32 +13,13 @@ console.log(powerSaveBlocker.isStarted(id))
 const { ipcMain } = require('electron');
 const io = require('socket.io-client');
 
-let socket = io("https://socket-max-hole.glitch.me/");
-let room = "perlinBois";
-socket.on('connect', () => {
-  console.log("the socket is connected"); // true
-   socket.emit("maxjoin", "hello");
-   socket.emit("leaveRoom", 'wholemaxhole');
-	 socket.emit("joinRoom", room);
 
-});
 
 socket.on('error', (error) => {
   console.log(error);
 });
 
 
-ipcMain.on('wake', (event, arg) => {
-  console.log(arg) // prints "ping"
-  
-})
-
-ipcMain.on('data', (event, arg) => {
-  //console.log(arg) // prints "ping"
-
-  socket.emit("to_room", room, arg);
-  
-})
 
 //-----------------------------------------------------------------END SOCKET IO
 
@@ -48,7 +29,7 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      resizable: false,
+      resizable: true,
       preload: path.join(__dirname, 'preload.js'),
       frame: false,
       backgroundThrottling: false,
