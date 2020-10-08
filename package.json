@@ -18,8 +18,10 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^10.1.0",
-    "electron-rebuild": "^2.0.1"
+    "electron": "^10.1.2",
+    "electron-rebuild": "^2.0.1",
+    "bufferutil": "^4.0.1",
+    "utf-8-validate": "5.0.2"
   },
   "dependencies": {
     "install": "^0.13.0",

@@ -10,3 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     replaceText(`${type}-version`, process.versions[type])
   }
 })
+
+
+
+console.log("preload.js");

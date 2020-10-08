@@ -3,62 +3,12 @@
 
 const osc = require("osc");
 const { count, countReset } = require("console");
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, ipcMain } = require("electron");
 
 // my includes
-const { Turner, OscObject } = require("./classes.js");
+//const {} = require("./classes.js");
 
 //------------------------------------------------------------OSC PORT SETTINGS
-
-let getIPAddresses = function () {
-  let os = require("os"),
-    interfaces = os.networkInterfaces(),
-    ipAddresses = [];
-
-  for (let deviceName in interfaces) {
-    let addresses = interfaces[deviceName];
-    for (let i = 0; i < addresses.length; i++) {
-      let addressInfo = addresses[i];
-      if (addressInfo.family === "IPv4" && !addressInfo.internal) {
-        ipAddresses.push(addressInfo.address);
-      }
-    }
-  }
-
-  return ipAddresses;
-};
-
-let udpPort = new osc.UDPPort({
-  // This is the port we're listening on.
-  localAddress: "127.0.0.1",
-  localPort: 57121,
-
-  // SEND This is where sclang is listening for OSC messages.
-  remoteAddress: "127.0.0.1",
-  remotePort: 57120,
-  metadata: true,
-});
-
-//---------------------------------------------------------OSC INIT & OPEN PORT
-udpPort.on("ready", function () {
-  let ipAddresses = getIPAddresses();
-
-  console.log("Listening for OSC over UDP.");
-  ipAddresses.forEach(function (address) {
-    console.log(" Host:", address + ", Port:", udpPort.options.localPort);
-  });
-  ipcRenderer.send("wake", "from renderer!");
-});
-
-udpPort.on("message", function (oscMessage) {
-  console.log(oscMessage);
-});
-
-udpPort.on("error", function (err) {
-  console.log(err);
-});
-
-udpPort.open();
 
 //----------------------------------------------------------------------CLASSES
 
@@ -66,26 +16,50 @@ udpPort.open();
 
 //-------------------------------------------------------------FIELDS
 
-let backgroundColor = 0;
-let tFrames = 0;
+let backgroundColor = 0
+let tFrames = 0
+let canvas, ctx
 
 //--------------------------------------------------------SKETCH INIT
 
 function setup() {
-  createCanvas(window.innerWidth, window.innerHeight);
- }
-
-
+  
+  canvas = document.getElementById("#Viewer")
+  ctx = canvas.getContext("2d")
+  background(0);
+}
 //----------------------------------------------------------DRAW LOOP
 function draw() {
   tFrames++;
-  background(backgroundColor);
-  text(key, 10, 10);
+  
 }
 //--------------------------------------------------------------INPUT
-function keyReleased() {
-  //key events 
-}
 
 //--------------------------------------------------------------------FUNCTIONS
 
+function loadFile() {
+  let svg = ipcRenderer.sendSync("loadFile", "loadFile");
+  console.log(svg);
+  drawSVG(canvas, ctx, svg)
+  
+}
+
+function drawSVG (canvas, ctx, data) {
+  var DOMURL = window.URL || window.webkitURL || window;
+         var img1 = new Image();
+         var svg = new Blob([data], {type: 'image/svg+xml'});
+         var url = DOMURL.createObjectURL(svg);
+         img1.onload = function() {
+            ctx.drawImage(img1, 25, 70);
+            DOMURL.revokeObjectURL(url);
+         }
+         img1.src = url;
+}
+
+//--------------------------------------------------------------EVENT LISTENERS
+
+document.querySelector("#loadFile").addEventListener("click", () => {
+  console.log(loadFile());
+});
+
+//----------------------------------------------------------------IPC LISTENERS
