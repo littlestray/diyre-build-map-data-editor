@@ -15,9 +15,9 @@ ipcMain.on("loadFile", (event, args) => {
   console.log(`${args}`)
 
   let svg = dialog.showOpenDialogSync()
-  svg = fs.readFileSync(svg[0]);
+  //svg = fs.readFileSync(svg[0]);
 
-  event.returnValue = svg.toString()
+  event.returnValue = svg[0]
 });
 
 console.log(path.join(__dirname, "preload.js"))
