@@ -15,7 +15,7 @@ ipcMain.on("loadFile", (event, args) => {
   console.log(`${args}`)
 
   let svg = dialog.showOpenDialogSync()
-  //svg = fs.readFileSync(svg[0]);
+  //svg = fs.readFileSync(svg[0])
 
   event.returnValue = svg[0]
 });
