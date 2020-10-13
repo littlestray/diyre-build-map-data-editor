@@ -21,23 +21,20 @@ let drawSVG = SVG().addTo('body').size(300, 300)
 
 
 //--------------------------------------------------------------INPUT
-
+let svg
 //--------------------------------------------------------------------FUNCTIONS
-
-
 function loadFile() {
-  let svg = ipcRenderer.sendSync("loadFile", "loadFile");
-  console.log(svg);
-  let image = drawSVG.image(svg);
-  
+  let svgPath = ipcRenderer.sendSync("loadFile", "loadFile")
+  console.log(svgPath)
+  let image = drawSVG.image(svgPath)
+
+  console.log(image)
+
 }
-
-
-
 //--------------------------------------------------------------EVENT LISTENERS
 
 document.querySelector("#loadFile").addEventListener("click", () => {
-  console.log(loadFile());
-});
+  console.log(loadFile())
+})
 
 //----------------------------------------------------------------IPC LISTENERS
