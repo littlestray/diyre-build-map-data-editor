@@ -9,3 +9,7 @@ A tool for labeling the components of a build map svg.
 3. npm i
 4. npm start
 
+Design:
+
+Load in SVG
+Create Corresponding Data.JSON

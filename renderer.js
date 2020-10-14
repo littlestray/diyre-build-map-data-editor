@@ -5,13 +5,13 @@ const osc = require("osc");
 const { count, countReset } = require("console");
 const { ipcRenderer, ipcMain } = require("electron");
 const { SVG } = require("@svgdotjs/svg.js");
+const fs = require("fs")
+//const $ = require("jquery")
 let drawSVG = SVG().addTo('body').size(300, 300)
 
 
 // my includes
 //const {} = require("./classes.js");
-
-//------------------------------------------------------------OSC PORT SETTINGS
 
 //----------------------------------------------------------------------CLASSES
 
@@ -21,14 +21,20 @@ let drawSVG = SVG().addTo('body').size(300, 300)
 
 
 //--------------------------------------------------------------INPUT
-let svg
+let image
+let svgData
+let parser = new DOMParser()
+let output = document.getElementById("output")
 //--------------------------------------------------------------------FUNCTIONS
 function loadFile() {
   let svgPath = ipcRenderer.sendSync("loadFile", "loadFile")
   console.log(svgPath)
-  let image = drawSVG.image(svgPath)
-
-  console.log(image)
+  //image = drawSVG.image(svgPath)
+  svgData = fs.readFileSync(svgPath)
+  image = parser.parseFromString(svgData.toString(), "image/svg+xml")
+  image = image.getElementsByTagName("g", "path")
+  output.innerHTML = image[0].toString()
+  
 
 }
 //--------------------------------------------------------------EVENT LISTENERS
