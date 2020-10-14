@@ -45,7 +45,7 @@ class DataFile {
         && x.id
         && x.id.substring(0, 6) != "CIRCLE"
         && x.id.substring(0, 5) != "SOLID"
-        && x.id.substring(0, 5) != "Parts")
+        && x.id.substring(0, 5) != "PARTS")
 
 
     for (let x in temp) {
@@ -58,7 +58,7 @@ class DataFile {
           "type": "PCB"
         }
         temp[x] = obj
-      } else if (temp[x].id.substring(0, 3) === "TOP" || temp[x].id.substring(0, 3) === "BOT") {
+      } else if (temp[x].id.substring(0, 3) === "TOP" || temp[x].id.substring(0, 3) === "BTM") {
         obj[temp[x].id] = {
           "type": "SIDE"
         }
