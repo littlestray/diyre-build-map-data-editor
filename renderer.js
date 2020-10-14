@@ -35,6 +35,7 @@ class DataFile {
 
   prepData(doc, index = 0) {
 
+    let object = {}
 
     let temp = doc.getElementsByTagName("g", "path");
     //filter out nonames and LW_POLYLINE
