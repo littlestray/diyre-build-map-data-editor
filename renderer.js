@@ -17,12 +17,12 @@ class DataFile {
     this.svgDoc = svgDoc
     this.coms = this.prepData(this.svgDoc)
     this.steps = {
-      1: "<a href='https://www.diyrecordingequipment.com/pages/#Bag1' target='_blank'></a>",
-      2: "<a href='https://www.diyrecordingequipment.com/pages/#Bag1' target='_blank'></a>",
-      3: "<a href='https://www.diyrecordingequipment.com/pages/#Bag1' target='_blank'></a>",
-      4: "<a href='https://www.diyrecordingequipment.com/pages/#Bag1' target='_blank'></a>",
-      5: "<a href='https://www.diyrecordingequipment.com/pages/#Bag1' target='_blank'></a>",
-      6: "<a href='https://www.diyrecordingequipment.com/pages/#Bag1' target='_blank'></a>",
+      1: "<a href='https://www.diyrecordingequipment.com/pages/PRODUCTNAME/#Bag1' target='_blank'></a>",
+      2: "<a href='https://www.diyrecordingequipment.com/pages/PRODUCTNAME/#Bag1' target='_blank'></a>",
+      3: "<a href='https://www.diyrecordingequipment.com/pages/PRODUCTNAME/#Bag1' target='_blank'></a>",
+      4: "<a href='https://www.diyrecordingequipment.com/pages/PRODUCTNAME/#Bag1' target='_blank'></a>",
+      5: "<a href='https://www.diyrecordingequipment.com/pages/PRODUCTNAME/#Bag1' target='_blank'></a>",
+      6: "<a href='https://www.diyrecordingequipment.com/pages/PRODUCTNAME/#Bag1' target='_blank'></a>",
       "T1": ["Bag#.#", "Component #"],
       "T2": ["Bag#.#", "Component #"],
       "T3": ["Bag#.#", "Component #"],
