@@ -16,3 +16,19 @@ svg {
   float: left;
   width: 33%;
 }
+
+button {
+  background-color: #FFF;
+  width: 200px;
+  height: 50px;
+  border: none;
+}
+
+button:hover{
+  background-color: #dddddd;
+  
+  border-bottom: 2px solid #000;
+}
+button:checked{
+  border: 2px solid #000;
+}

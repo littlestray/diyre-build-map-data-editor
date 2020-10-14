@@ -44,7 +44,8 @@ class DataFile {
       x => x.id.substring(0, 2) != "LW"
         && x.id
         && x.id.substring(0, 6) != "CIRCLE"
-        && x.id.substring(0, 5) != "SOLID")
+        && x.id.substring(0, 5) != "SOLID"
+        && x.id.substring(0, 5) != "Parts")
 
 
     for (let x in temp) {
@@ -126,6 +127,7 @@ function saveDataFile() {
 
   for (let x in dataFile.steps) {
     console.log(x)
+    tempOutput["steps"][x] = dataFile.steps[x]
   }
 
   fs.writeFileSync(__dirname + "/assets/output.json", JSON.stringify(tempOutput));
