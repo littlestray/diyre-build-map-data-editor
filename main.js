@@ -2,11 +2,13 @@
 const { app, BrowserWindow, dialog } = require("electron")
 const path = require("path")
 const fs = require("fs")
+const jsdom = require("jsdom");
 
-const { powerSaveBlocker } = require("electron")
 
-const id = powerSaveBlocker.start("prevent-display-sleep")
-console.log(powerSaveBlocker.isStarted(id))
+// const { powerSaveBlocker } = require("electron")
+
+// const id = powerSaveBlocker.start("prevent-display-sleep")
+// console.log(powerSaveBlocker.isStarted(id))
 
 //----------------------------------------------------------------------IPC-I/Os
 const { ipcMain } = require("electron")
@@ -15,9 +17,18 @@ ipcMain.on("loadFile", (event, args) => {
   console.log(`${args}`)
 
   let svg = dialog.showOpenDialogSync()
-  //svg = fs.readFileSync(svg[0])
+  if(svg === undefined){
+    console.log("invalid file path")
+  } else {
+  let svgPath = svg[0]
+  console.log(svgPath)
 
-  event.returnValue = svg[0]
+  let svgData = fs.readFileSync(svgPath)
+  // svgData = parser.parseFromString(svgData.toString(), "image/svg+xml")
+  event.returnValue = svgData.toString()
+  }
+  event.returnValue = null
+  
 });
 
 console.log(path.join(__dirname, "preload.js"))
