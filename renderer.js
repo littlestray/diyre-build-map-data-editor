@@ -37,7 +37,7 @@ class DataFile {
 
     let object = {}
 
-    let temp = doc.getElementsByTagName("g", "path");
+    let temp = doc.getElementsByTagName("g", "path", "rect", "polygon");
     //filter out nonames and LW_POLYLINE
     //filter our CIRCLES and SOLIDS
     temp = [...temp].filter(
@@ -45,7 +45,10 @@ class DataFile {
         && x.id
         && x.id.substring(0, 6) != "CIRCLE"
         && x.id.substring(0, 5) != "SOLID"
-        && x.id.substring(0, 5) != "PARTS")
+        && x.id.substring(0, 5) != "PARTS"
+        && x.id.substring(0, 5) != "Board"
+        && x.id.substring(0, 10) != "Silkscreen"
+        && x.id.substring(0, 4) != "Pads")
 
 
     for (let x in temp) {
@@ -58,7 +61,7 @@ class DataFile {
           "type": "PCB"
         }
         temp[x] = obj
-      } else if (temp[x].id.substring(0, 3) === "TOP" || temp[x].id.substring(0, 3) === "BTM") {
+      } else if (temp[x].id.substring(0, 3) === "TOP" || temp[x].id.substring(0, 3) === "BOT") {
         obj[temp[x].id] = {
           "type": "SIDE"
         }
