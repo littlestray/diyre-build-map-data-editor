@@ -37,18 +37,22 @@ class DataFile {
 
     let object = {}
 
-    let temp = doc.getElementsByTagName("g", "path", "rect", "polygon");
-    //filter out nonames and LW_POLYLINE
+    let targetTags = ["g", "path", "rect", "polygon"]
+
+    let temp  = doc.getElementsByTagName("g", "path", "rect", "polygon")
+    
+    
+    //filter out id-less and LW_POLYLINE
     //filter our CIRCLES and SOLIDS
     temp = [...temp].filter(
-      x => x.id.substring(0, 2) != "LW"
-        && x.id
-        && x.id.substring(0, 6) != "CIRCLE"
-        && x.id.substring(0, 5) != "SOLID"
-        && x.id.substring(0, 5) != "PARTS"
-        && x.id.substring(0, 5) != "Board"
+      x => x.id
+        && x.id.substring(0, 2) != "LW"
+        && x.id.substring(0, 6)  != "CIRCLE"
+        && x.id.substring(0, 5)  != "SOLID"
+        && x.id.substring(0, 5)  != "PARTS"
+        && x.id.substring(0, 5)  != "Board"
         && x.id.substring(0, 10) != "Silkscreen"
-        && x.id.substring(0, 4) != "Pads")
+        && x.id.substring(0, 4)  != "Pads")
 
 
     for (let x in temp) {
